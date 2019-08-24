@@ -279,15 +279,17 @@ namespace CryptoNote
     };
 
     const char* const SEED_NODES[] = {
-        "node-chukwa-001.cryptocatalyst.net:17250",
-        "node-chukwa-002.cryptocatalyst.net:17250",
-        "node-chukwa-003.cryptocatalyst.net:17250",
-        "node-chukwa-004.cryptocatalyst.net:17250",
-        "node-chukwa-005.cryptocatalyst.net:17250",
-        "node-chukwa-006.cryptocatalyst.net:17250",
-        "node-chukwa-007.cryptocatalyst.net:17250",
-        "node-chukwa-008.cryptocatalyst.net:17250",
-        "node-chukwa-009.cryptocatalyst.net:17250",
-        "node-chukwa-010.cryptocatalyst.net:17250"
+        "192.168.1.80:17290",
+        "192.168.1.200:17250"
+        // "node-chukwa-001.cryptocatalyst.net:17250",
+        // "node-chukwa-002.cryptocatalyst.net:17250",
+        // "node-chukwa-003.cryptocatalyst.net:17250",
+        // "node-chukwa-004.cryptocatalyst.net:17250",
+        // "node-chukwa-005.cryptocatalyst.net:17250",
+        // "node-chukwa-006.cryptocatalyst.net:17250",
+        // "node-chukwa-007.cryptocatalyst.net:17250",
+        // "node-chukwa-008.cryptocatalyst.net:17250",
+        // "node-chukwa-009.cryptocatalyst.net:17250",
+        // "node-chukwa-010.cryptocatalyst.net:17250"
     };
 } // CryptoNote

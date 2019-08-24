@@ -1,0 +1,98 @@
+version: '3'
+
+
+
+
+# MSBuild Catalyst.sln /p:Configuration=Release /m
+
+
+# ./miner --threads 1 --daemon-host 192.168.1.200 --daemon-rpc-port 17250 --address cat18x93ufCQWaX4f8f2c2fZ8Ku2A4VTcgEoSpweiDbgEBF9i7YA2XGX1dSR7UbguQU5UKYEXyjfaTfnJBmRhHju26n8Y9AAFx
+
+# docker-compose build --force-rm --parallel chukwa-node
+
+# ufw allow from any to any port 17250 proto tcp
+# ufw allow from any to any port 17250 proto udp
+services:
+
+  chukwa-node:
+    container_name: chukwa-node
+    image: chukwa-node:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+
+
+  miner:
+    container_name: miner
+    image: cn-node:latest
+    working_dir: /cat-bin
+    # --daemon-rpc-port 17251
+    command: ./miner --threads 1 --daemon-host 172.16.78.13 --address cat18x93ufCQWaX4f8f2c2fZ8Ku2A4VTcgEoSpweiDbgEBF9i7YA2XGX1dSR7UbguQU5UKYEXyjfaTfnJBmRhHju26n8Y9AAFx
+    volumes:
+      - ./bin:/cat-bin
+    # networks:
+    #   testnet:
+    #     ipv4_address: 172.16.78.14
+
+  node1:
+    container_name: node1
+    image: chukwa-node:latest
+    working_dir: /node
+    command: ./catalystd --data-dir bc-1 --rpc-bind-ip 0.0.0.0 --allow-local-ip --log-level=2
+    volumes:
+      - cn-catalyst-volume:/node/shared
+    networks:
+      testnet:#
+        ipv4_address: 172.16.78.11
+    ports:
+      - "17290:17290/udp"
+      - "17290:17290/tcp"
+    expose:
+      - 17290
+
+  node2:
+    container_name: node2
+    image: chukwa-node:latest
+    working_dir: /node
+    command: ./catalystd --data-dir blockchain --p2p-bind-port 17250 --rpc-bind-ip 0.0.0.0 --allow-local-ip --log-level=2
+    # volumes:
+    #   - ./bin:/cat-bin
+    #   - ./node2-bc:/cat-bin/blockchain
+    networks:
+      testnet:
+        ipv4_address: 172.16.78.12
+    ports:
+      - "17250:17250/udp"
+      - "17250:17250/tcp"
+    expose:
+      - 17250
+
+  node3:
+    container_name: nodec
+    image: cn-node:latest
+    working_dir: /cat-bin
+    command: ./catalystd --rpc-bind-port 17251 --p2p-bind-port 17250 --log-level=2 --data-dir blockchain --rpc-bind-ip 0.0.0.0 --allow-local-ip
+    volumes:
+      - ./bin:/cat-bin
+      - ./node3-bc:/cat-bin/blockchain
+    # networks:
+    #   testnet:
+    #     ipv4_address: 172.16.78.13
+    ports:
+      - 17290:17290
+    expose:
+      - 17290
+
+
+networks:
+  testnet:
+    ipam:
+      config:
+        - subnet: 172.16.78.0/24
+
+
+
+
+volumes:
+  cn-catalyst-volume:
+    external: true
