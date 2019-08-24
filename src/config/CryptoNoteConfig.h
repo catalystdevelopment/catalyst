@@ -149,13 +149,17 @@ namespace CryptoNote
         const uint32_t UPGRADE_HEIGHT_V2                             = 1;
         const uint32_t UPGRADE_HEIGHT_V3                             = 2;
         const uint32_t UPGRADE_HEIGHT_V4                             = 3; // Upgrade height for CN-Lite Variant 1 switch.
+
+        // Next upgrade current (382450) + 1 week (11520) = 393950
         const uint32_t UPGRADE_HEIGHT_V5                             = 4; // Upgrade height for CN-Turtle Variant 2 switch.
         const uint32_t UPGRADE_HEIGHT_V6                             = 5; // Upgrade height for Chukwa switch.
         const uint32_t UPGRADE_HEIGHT_CURRENT                        = UPGRADE_HEIGHT_V6;
 
             /* This value is here to handle the difficult reset needed for the PoW upgrade
        at block major version V6 */
-        const uint64_t DIFFICULTY_RESET_HEIGHT_V1 = UPGRADE_HEIGHT_V6;
+
+        // WARNING TODO No, thank you, we will revise the reset option later - let's postpone it for 1000 days from now.
+        const uint64_t DIFFICULTY_RESET_HEIGHT_V1 = 1833950;
         const float DIFFICULTY_RESET_MULTIPLIER_V1 = 0.1;
         const uint64_t DIFFICULTY_RESET_WINDOW_V1 = DIFFICULTY_BLOCKS_COUNT_V3;
 
@@ -266,7 +270,7 @@ namespace CryptoNote
     const uint32_t DATABASE_DEFAULT_MAX_OPEN_FILES = 500; // 500 files
     const uint16_t DATABASE_DEFAULT_BACKGROUND_THREADS_COUNT = 10; // 10 DB threads
 
-    const char     LATEST_VERSION_URL[]                          = "http://catalystcrypto.net";
+    const char     LATEST_VERSION_URL[]                          = "http://cryptocatalyst.net";
     const std::string LICENSE_URL                                = "https://github.com/catalystdevelopment/catalyst/blob/development/LICENSE";
     const static   boost::uuids::uuid CRYPTONOTE_NETWORK         =
     {
@@ -275,9 +279,15 @@ namespace CryptoNote
     };
 
     const char* const SEED_NODES[] = {
-        "3.13.173.213:17290", 
-        "34.199.2.94:17290", 
-        "node001.cryptocatalyst.net:17290", 
-        "node002.cryptocatalyst.net:17290"
+        "node-chukwa-001.cryptocatalyst.net:17250",
+        "node-chukwa-002.cryptocatalyst.net:17250",
+        "node-chukwa-003.cryptocatalyst.net:17250",
+        "node-chukwa-004.cryptocatalyst.net:17250",
+        "node-chukwa-005.cryptocatalyst.net:17250",
+        "node-chukwa-006.cryptocatalyst.net:17250",
+        "node-chukwa-007.cryptocatalyst.net:17250",
+        "node-chukwa-008.cryptocatalyst.net:17250",
+        "node-chukwa-009.cryptocatalyst.net:17250",
+        "node-chukwa-010.cryptocatalyst.net:17250"
     };
 } // CryptoNote
