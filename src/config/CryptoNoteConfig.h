@@ -50,7 +50,7 @@ namespace CryptoNote
         static_assert(EMISSION_SPEED_FACTOR <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
         static_assert(EMISSION_SPEED_FACTOR_V2 <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
 
-        const uint64_t EMISSION_SPEED_V2_HEIGHT                      = 0;
+        const uint64_t EMISSION_SPEED_V2_HEIGHT                      = 21000;
 
         const uint64_t GENESIS_BLOCK_REWARD                          = UINT64_C(0);
 
@@ -150,18 +150,24 @@ namespace CryptoNote
         const uint32_t UPGRADE_HEIGHT_V3                             = 2;
         const uint32_t UPGRADE_HEIGHT_V4                             = 3; // Upgrade height for CN-Lite Variant 1 switch.
 
+        // 38305
         // Next upgrade current (382450) + 1 week (11520) = 393950
-        const uint32_t UPGRADE_HEIGHT_V5                             = 4; // Upgrade height for CN-Turtle Variant 2 switch.
-        const uint32_t UPGRADE_HEIGHT_V6                             = 5; // Upgrade height for Chukwa switch.
+        const uint32_t UPGRADE_HEIGHT_V5                             = 382906; // Upgrade height for CN-Turtle Variant 2 switch.
+        const uint32_t UPGRADE_HEIGHT_V6                             = 382907; // Upgrade height for Chukwa switch.
         const uint32_t UPGRADE_HEIGHT_CURRENT                        = UPGRADE_HEIGHT_V6;
 
             /* This value is here to handle the difficult reset needed for the PoW upgrade
        at block major version V6 */
 
-        // WARNING TODO No, thank you, we will revise the reset option later - let's postpone it for 1000 days from now.
-        const uint64_t DIFFICULTY_RESET_HEIGHT_V1 = 1833950;
+        // WARNING TODO No, thank you, we will revise the reset option later - let's postpone it for 1000 days from now. 1833950
+
+        const uint64_t DIFFICULTY_RESET_HEIGHT_V1 = UPGRADE_HEIGHT_V5;
+
         const float DIFFICULTY_RESET_MULTIPLIER_V1 = 0.1;
-        const uint64_t DIFFICULTY_RESET_WINDOW_V1 = DIFFICULTY_BLOCKS_COUNT_V3;
+
+        // Light reset for 2 block
+        const uint64_t DIFFICULTY_RESET_WINDOW_V1 = 2;
+        // const uint64_t DIFFICULTY_RESET_WINDOW_V1 = DIFFICULTY_BLOCKS_COUNT_V3;
 
         const unsigned UPGRADE_VOTING_THRESHOLD                      = 90;               // percent
         const uint32_t UPGRADE_VOTING_WINDOW                         = EXPECTED_NUMBER_OF_BLOCKS_PER_DAY;  // blocks
@@ -279,8 +285,9 @@ namespace CryptoNote
     };
 
     const char* const SEED_NODES[] = {
-        "192.168.1.80:17290",
-        "192.168.1.200:17250"
+        "172.16.78.10:17290",
+        "172.16.78.11:17290",
+        "172.16.78.12:17290"
         // "node-chukwa-001.cryptocatalyst.net:17250",
         // "node-chukwa-002.cryptocatalyst.net:17250",
         // "node-chukwa-003.cryptocatalyst.net:17250",

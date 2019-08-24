@@ -20,7 +20,7 @@ version: '3'
 # docker-compose run --rm --service-ports --name miner miner
 
 # external miner
-# ./miner --threads 1 --daemon-host fs.local --daemon-rpc-port 17251 --address cat18x93ufCQWaX4f8f2c2fZ8Ku2A4VTcgEoSpweiDbgEBF9i7YA2XGX1dSR7UbguQU5UKYEXyjfaTfnJBmRhHju26n8Y9AAFx
+# ./miner --threads 4 --daemon-host fs.local --daemon-rpc-port 17251 --address cat18x93ufCQWaX4f8f2c2fZ8Ku2A4VTcgEoSpweiDbgEBF9i7YA2XGX1dSR7UbguQU5UKYEXyjfaTfnJBmRhHju26n8Y9AAFx
 
 services:
 
