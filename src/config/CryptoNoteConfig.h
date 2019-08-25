@@ -128,9 +128,9 @@ namespace CryptoNote
         /* For new projects forked from this code base, the values immediately below
            should be changed to 0 to prevent issues with transaction processing
            and other possible unexpected behavior */
-        const uint64_t TRANSACTION_SIGNATURE_COUNT_VALIDATION_HEIGHT = 170000;
-        const uint64_t BLOCK_BLOB_SHUFFLE_CHECK_HEIGHT               = 490000;
-        const uint64_t TRANSACTION_INPUT_BLOCKTIME_VALIDATION_HEIGHT = 490000;
+        const uint64_t TRANSACTION_SIGNATURE_COUNT_VALIDATION_HEIGHT = 0;
+        const uint64_t BLOCK_BLOB_SHUFFLE_CHECK_HEIGHT               = 0;
+        const uint64_t TRANSACTION_INPUT_BLOCKTIME_VALIDATION_HEIGHT = 0;
 
         /* This describes how many blocks of "wiggle" room transactions have regarding
            when the outputs can be spent based on a reasonable belief that the outputs
@@ -149,13 +149,16 @@ namespace CryptoNote
         const uint32_t UPGRADE_HEIGHT_V2                             = 1;
         const uint32_t UPGRADE_HEIGHT_V3                             = 2;
         const uint32_t UPGRADE_HEIGHT_V4                             = 3; // Upgrade height for CN-Lite Variant 1 switch.
-        const uint32_t UPGRADE_HEIGHT_V5                             = 489999; // Upgrade height for CN-Turtle Variant 2 switch.
-        const uint32_t UPGRADE_HEIGHT_V6                             = 490000; // Upgrade height for Chukwa switch.
-        const uint32_t UPGRADE_HEIGHT_CURRENT                        = UPGRADE_HEIGHT_V4;
+        // Next upgrade current (382450) + 1 week (11520) = 394000
+        const uint32_t UPGRADE_HEIGHT_V5                             = 394000; // Upgrade height for CN-Turtle Variant 2 switch.
+        const uint32_t UPGRADE_HEIGHT_V6                             = UPGRADE_HEIGHT_V5 + 1; // Upgrade height for Chukwa switch.
+        const uint32_t UPGRADE_HEIGHT_CURRENT                        = UPGRADE_HEIGHT_V6;
 
             /* This value is here to handle the difficult reset needed for the PoW upgrade
        at block major version V6 */
-        const uint64_t DIFFICULTY_RESET_HEIGHT_V1 = UPGRADE_HEIGHT_V6;
+        // WARNING TODO No, thank you, we will revise the reset option later.
+        // Let's postpone it for 1000 days from now. 1833950
+        const uint64_t DIFFICULTY_RESET_HEIGHT_V1 = 1833950;
         const float DIFFICULTY_RESET_MULTIPLIER_V1 = 0.1;
         const uint64_t DIFFICULTY_RESET_WINDOW_V1 = DIFFICULTY_BLOCKS_COUNT_V3;
 
@@ -175,7 +178,7 @@ namespace CryptoNote
         };
 
         /* MAKE SURE TO UPDATE THIS VALUE WITH EVERY MAJOR RELEASE BEFORE A FORK */
-        const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX                 = 2;
+        const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX                 = 3;
 
         const uint64_t FORK_HEIGHTS_SIZE = sizeof(FORK_HEIGHTS) / sizeof(*FORK_HEIGHTS);
 
@@ -266,7 +269,7 @@ namespace CryptoNote
     const uint32_t DATABASE_DEFAULT_MAX_OPEN_FILES = 500; // 500 files
     const uint16_t DATABASE_DEFAULT_BACKGROUND_THREADS_COUNT = 10; // 10 DB threads
 
-    const char     LATEST_VERSION_URL[]                          = "http://catalystcrypto.net";
+    const char     LATEST_VERSION_URL[]                          = "http://www.cryptocatalyst.net";
     const std::string LICENSE_URL                                = "https://github.com/catalystdevelopment/catalyst/blob/development/LICENSE";
     const static   boost::uuids::uuid CRYPTONOTE_NETWORK         =
     {
@@ -278,5 +281,15 @@ namespace CryptoNote
         "45.76.31.135:17290",   // oddbox
         "66.42.87.139:17290",
         "188.166.157.115:17290" // H3R3TiK
+        "node-chukwa-001.cryptocatalyst.net:17290",
+        "node-chukwa-002.cryptocatalyst.net:17290",
+        "node-chukwa-003.cryptocatalyst.net:17290",
+        "node-chukwa-004.cryptocatalyst.net:17290",
+        "node-chukwa-005.cryptocatalyst.net:17290",
+        "node-chukwa-006.cryptocatalyst.net:17290",
+        "node-chukwa-007.cryptocatalyst.net:17290",
+        "node-chukwa-008.cryptocatalyst.net:17290",
+        "node-chukwa-009.cryptocatalyst.net:17290",
+        "node-chukwa-010.cryptocatalyst.net:17290"
     };
 } // CryptoNote
