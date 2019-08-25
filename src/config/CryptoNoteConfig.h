@@ -152,22 +152,18 @@ namespace CryptoNote
 
         // 38305
         // Next upgrade current (382450) + 1 week (11520) = 393950
-        const uint32_t UPGRADE_HEIGHT_V5                             = 382906; // Upgrade height for CN-Turtle Variant 2 switch.
-        const uint32_t UPGRADE_HEIGHT_V6                             = 382907; // Upgrade height for Chukwa switch.
+        const uint32_t UPGRADE_HEIGHT_V5                             = 382905; // Upgrade height for CN-Turtle Variant 2 switch.
+        const uint32_t UPGRADE_HEIGHT_V6                             = UPGRADE_HEIGHT_V5 + 1; // Upgrade height for Chukwa switch.
         const uint32_t UPGRADE_HEIGHT_CURRENT                        = UPGRADE_HEIGHT_V6;
 
             /* This value is here to handle the difficult reset needed for the PoW upgrade
        at block major version V6 */
 
-        // WARNING TODO No, thank you, we will revise the reset option later - let's postpone it for 1000 days from now. 1833950
-
-        const uint64_t DIFFICULTY_RESET_HEIGHT_V1 = UPGRADE_HEIGHT_V5;
-
+        // WARNING TODO No, thank you, we will revise the reset option later.
+        // Let's postpone it for 1000 days from now. 1833950
+        const uint64_t DIFFICULTY_RESET_HEIGHT_V1 = 1833950;
         const float DIFFICULTY_RESET_MULTIPLIER_V1 = 0.1;
-
-        // Light reset for 2 block
-        const uint64_t DIFFICULTY_RESET_WINDOW_V1 = 2;
-        // const uint64_t DIFFICULTY_RESET_WINDOW_V1 = DIFFICULTY_BLOCKS_COUNT_V3;
+        const uint64_t DIFFICULTY_RESET_WINDOW_V1 = DIFFICULTY_BLOCKS_COUNT_V3;
 
         const unsigned UPGRADE_VOTING_THRESHOLD                      = 90;               // percent
         const uint32_t UPGRADE_VOTING_WINDOW                         = EXPECTED_NUMBER_OF_BLOCKS_PER_DAY;  // blocks
@@ -207,7 +203,7 @@ namespace CryptoNote
         const char     MINER_CONFIG_FILE_NAME[]                      = "miner_conf.json";
     } // parameters
 
-    const char     CRYPTONOTE_NAME[]                             = "Catalyst";
+    const char     CRYPTONOTE_NAME[]                             = "CatalystTestNet";
 
     const uint8_t  TRANSACTION_VERSION_1                         =  1;
     const uint8_t  TRANSACTION_VERSION_2                         =  2;
@@ -288,15 +284,5 @@ namespace CryptoNote
         "172.16.78.10:17290",
         "172.16.78.11:17290",
         "172.16.78.12:17290"
-        // "node-chukwa-001.cryptocatalyst.net:17250",
-        // "node-chukwa-002.cryptocatalyst.net:17250",
-        // "node-chukwa-003.cryptocatalyst.net:17250",
-        // "node-chukwa-004.cryptocatalyst.net:17250",
-        // "node-chukwa-005.cryptocatalyst.net:17250",
-        // "node-chukwa-006.cryptocatalyst.net:17250",
-        // "node-chukwa-007.cryptocatalyst.net:17250",
-        // "node-chukwa-008.cryptocatalyst.net:17250",
-        // "node-chukwa-009.cryptocatalyst.net:17250",
-        // "node-chukwa-010.cryptocatalyst.net:17250"
     };
 } // CryptoNote
