@@ -50,7 +50,7 @@ namespace CryptoNote
         static_assert(EMISSION_SPEED_FACTOR <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
         static_assert(EMISSION_SPEED_FACTOR_V2 <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
 
-        const uint64_t EMISSION_SPEED_V2_HEIGHT                      = 21000;
+        const uint64_t EMISSION_SPEED_V2_HEIGHT                      = 0;
 
         const uint64_t GENESIS_BLOCK_REWARD                          = UINT64_C(0);
 
@@ -128,6 +128,7 @@ namespace CryptoNote
         /* For new projects forked from this code base, the values immediately below
            should be changed to 0 to prevent issues with transaction processing
            and other possible unexpected behavior */
+
         const uint64_t TRANSACTION_SIGNATURE_COUNT_VALIDATION_HEIGHT = 170000;
         const uint64_t BLOCK_BLOB_SHUFFLE_CHECK_HEIGHT               = 382000;
         const uint64_t TRANSACTION_INPUT_BLOCKTIME_VALIDATION_HEIGHT = 382000;
@@ -149,9 +150,11 @@ namespace CryptoNote
         const uint32_t UPGRADE_HEIGHT_V2                             = 1;
         const uint32_t UPGRADE_HEIGHT_V3                             = 2;
         const uint32_t UPGRADE_HEIGHT_V4                             = 3; // Upgrade height for CN-Lite Variant 1 switch.
+
         // Next upgrade current (382450) + 1 week (11520) = 394000
         const uint32_t UPGRADE_HEIGHT_V5                             = 381999; // Upgrade height for CN-Turtle Variant 2 switch.
         const uint32_t UPGRADE_HEIGHT_V6                             = 382000; // Upgrade height for Chukwa switch.
+
         const uint32_t UPGRADE_HEIGHT_CURRENT                        = UPGRADE_HEIGHT_V6;
 
             /* This value is here to handle the difficult reset needed for the PoW upgrade
@@ -273,8 +276,8 @@ namespace CryptoNote
     const std::string LICENSE_URL                                = "https://github.com/catalystdevelopment/catalyst/blob/development/LICENSE";
     const static   boost::uuids::uuid CRYPTONOTE_NETWORK         =
     {
-        // Another one of Bender's nightmares
-        {  0x01, 0x11, 0x01, 0x11, 0x00, 0x01, 0x10, 0x11, 0x11, 0x11, 0x00, 0x01, 0x11, 0x00, 0x01, 0x02 }
+        // I hope I'm unique :^)
+        {  0xae, 0xaf, 0xab, 0x11, 0x00, 0x01, 0x10, 0x1b, 0x11, 0x01, 0x00, 0x01, 0x11, 0x00, 0x01, 0x02 }
     };
 
     const char* const SEED_NODES[] = {
