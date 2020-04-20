@@ -1,7 +1,7 @@
 // Copyright (c) 2012-2017, The CryptoNote developers, The Bytecoin developers
 // Copyright (c) 2014-2018, The Monero Project
 // Copyright (c) 2018-2019, The TurtleCoin Developers
-// Copyright (c) 2018-2019, The Catalyst Developers
+// Copyright (c) 2018-2020, The Catalyst Developers
 //
 // Please see the included LICENSE file for more information.
 
@@ -17,8 +17,8 @@
 
 namespace CryptoNote
 {
-        namespace parameters
-        {
+    namespace parameters
+    {
 
         const uint64_t DIFFICULTY_TARGET                             = 60; // seconds
 
@@ -73,7 +73,7 @@ namespace CryptoNote
 
         const size_t   CRYPTONOTE_DISPLAY_DECIMAL_POINT              = 7;
 
-        const uint64_t MINIMUM_FEE                                   = UINT64_C(10000);
+        const uint64_t MINIMUM_FEE                                   = UINT64_C(70000000); // 7.0000000 CX
 
         /* This section defines our minimum and maximum mixin counts required for transactions */
         const uint64_t MINIMUM_MIXIN_V1                              = 0;
@@ -82,13 +82,13 @@ namespace CryptoNote
         const uint64_t MINIMUM_MIXIN_V2                              = 3;
         const uint64_t MAXIMUM_MIXIN_V2                              = 5;
 
-        const uint64_t MINIMUM_MIXIN_V3                              = 3; 
-        const uint64_t MAXIMUM_MIXIN_V3                              = 5; 
+        const uint64_t MINIMUM_MIXIN_V3                              = 1;
+        const uint64_t MAXIMUM_MIXIN_V3                              = 3;
 
         /* The heights to activate the mixin limits at */
         const uint32_t MIXIN_LIMITS_V1_HEIGHT                        = 0;
         const uint32_t MIXIN_LIMITS_V2_HEIGHT                        = 1;
-        const uint32_t MIXIN_LIMITS_V3_HEIGHT                        = 770000; 
+        const uint32_t MIXIN_LIMITS_V3_HEIGHT                        = 722500;
 
         /* The mixin to use by default with zedwallet and turtle-service */
         /* DEFAULT_MIXIN_V0 is the mixin used before MIXIN_LIMITS_V1_HEIGHT is started */
@@ -101,7 +101,7 @@ namespace CryptoNote
         const uint64_t DEFAULT_DUST_THRESHOLD_V2                     = UINT64_C(0);
 
         const uint32_t DUST_THRESHOLD_V2_HEIGHT                      = MIXIN_LIMITS_V2_HEIGHT;
-        const uint32_t FUSION_DUST_THRESHOLD_HEIGHT_V2               = 770000;
+        const uint32_t FUSION_DUST_THRESHOLD_HEIGHT_V2               = 722500;
         const uint64_t EXPECTED_NUMBER_OF_BLOCKS_PER_DAY             = 24 * 60 * 60 / DIFFICULTY_TARGET;
 
         const size_t   DIFFICULTY_WINDOW                             = 17;
@@ -124,18 +124,6 @@ namespace CryptoNote
         const uint64_t MAX_EXTRA_SIZE                                = 140000;
         const uint64_t MAX_EXTRA_SIZE_V2                             = 1024;
         const uint64_t MAX_EXTRA_SIZE_V2_HEIGHT                      = 170000;
-
-        /* 10 trillion atomic, or 10 million CX
-        /* This is enforced on the daemon side. An output > 10 million causes
-         * an invalid block. */
-        const uint64_t MAX_OUTPUT_SIZE_NODE   = 10'000'000'0000000;
-
-        /* 100 billion atomic, or 10 thousand CX */
-        /* This is enforced on the client side. An output > 1 billion will not
-         * be created in a transaction */
-        const uint64_t MAX_OUTPUT_SIZE_CLIENT = 10'000'0000000;
-
-        const uint64_t MAX_OUTPUT_SIZE_HEIGHT = 770000;
 
         /* For new projects forked from this code base, the values immediately below
            should be changed to 0 to prevent issues with transaction processing
@@ -166,8 +154,8 @@ namespace CryptoNote
         const uint32_t UPGRADE_HEIGHT_V6                             = 394000; // Upgrade height for Chukwa switch.
         const uint32_t UPGRADE_HEIGHT_CURRENT                        = UPGRADE_HEIGHT_V6;
 
-            /* This value is here to handle the difficult reset needed for the PoW upgrade
-       at block major version V6 */
+        /* This value is here to handle the difficult reset needed for the PoW upgrade
+   at block major version V6 */
         // WARNING TODO No, thank you, we will revise the reset option later.
         // Let's postpone it for 1000 days from now. 1833950
         const uint64_t DIFFICULTY_RESET_HEIGHT_V1 = 1833950;
@@ -182,15 +170,16 @@ namespace CryptoNote
 
         /* Block heights we are going to have hard forks at */
         const uint64_t FORK_HEIGHTS[] =
-        {
-            21000,   // 0
-            170000,  // 1
-            394000,  // 2
-            770000   // 3
-        };
+                {
+                        21000,   // 0
+                        170000,  // 1
+                        394000,  // 2
+                        722500   // 3
+                        770000   // 4
+                };
 
         /* MAKE SURE TO UPDATE THIS VALUE WITH EVERY MAJOR RELEASE BEFORE A FORK */
-        const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX                 = 2;
+        const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX                 = 3;
 
         const uint64_t FORK_HEIGHTS_SIZE = sizeof(FORK_HEIGHTS) / sizeof(*FORK_HEIGHTS);
 
@@ -284,16 +273,18 @@ namespace CryptoNote
     const char     LATEST_VERSION_URL[]                          = "https://www.cryptocatalyst.net";
     const std::string LICENSE_URL                                = "https://github.com/catalystdevelopment/catalyst/blob/development/LICENSE";
     const static   boost::uuids::uuid CRYPTONOTE_NETWORK         =
-    {
-        // Another one of Bender's nightmares
-        {  0x01, 0x11, 0x01, 0x11, 0x00, 0x01, 0x10, 0x11, 0x11, 0x11, 0x00, 0x01, 0x11, 0x00, 0x01, 0x02 }
-    };
+            {
+                    // Another one of Bender's nightmares
+                    {  0x01, 0x11, 0x01, 0x11, 0x00, 0x01, 0x10, 0x11, 0x11, 0x11, 0x00, 0x01, 0x11, 0x00, 0x01, 0x02 }
+            };
 
     const char* const SEED_NODES[] = {
-        "node-chukwa-01.cryptocatalyst.net:17290",
-        "node-chukwa-02.cryptocatalyst.net:17290",
-        "node-chukwa-03.cryptocatalyst.net:17290",
-        "node-chukwa-04.cryptocatalyst.net:17290",
-        "node-chukwa-05.cryptocatalyst.net:17290"
+//        "node-chukwa-01.cryptocatalyst.net:17290",
+//        "node-chukwa-02.cryptocatalyst.net:17290",
+//        "node-chukwa-03.cryptocatalyst.net:17290",
+//        "node-chukwa-04.cryptocatalyst.net:17290",
+//        "node-chukwa-05.cryptocatalyst.net:17290",
+            "3.130.191.255", // dirtybits
+            "46.30.188.5"    // TheGoldenSparrow
     };
 } // CryptoNote
