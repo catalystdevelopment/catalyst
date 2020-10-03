@@ -20,7 +20,7 @@ def main():
         print("Outputs fuseable: {}".format(fuseable))
         try:
             print("Sending Fusion")
-            fusion_result = wallet.send_fusion_transaction(100000, 3, [args.address], args.address)
+            fusion_result = wallet.send_fusion_transaction(10000, 3, [args.address], args.address)
             print("Fusion result: {}".format(y))
             time.sleep(args.wait)
         except ValueError:
