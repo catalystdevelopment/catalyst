@@ -16,7 +16,7 @@ def main():
 
     wallet = Wallet(password=args.password, port=args.port)
     while True:
-        fuseable = wallet.estimate_fusion(100000, [args.address])
+        fuseable = wallet.estimate_fusion(10000, [args.address])
         print("Outputs fuseable: {}".format(fuseable))
         try:
             print("Sending Fusion")
